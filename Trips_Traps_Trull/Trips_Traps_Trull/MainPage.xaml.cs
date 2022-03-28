@@ -10,17 +10,33 @@ namespace Trips_Traps_Trull
 {
     public partial class MainPage : ContentPage
     {
-        Button n_btn, rules_btn;
+        Button n_btn, l_btn, b_btn, rules_btn;
         public MainPage()
         {
             InitializeComponent();
             n_btn = new Button
             {
-                Text = "New Game",
+                Text = "Uus mänd pildidega",
                 BackgroundColor = Color.Bisque,
                 TextColor = Color.Black
             };
             n_btn.Clicked += Start_Page;
+
+            l_btn = new Button
+            {
+                Text = "Uus mänd leibliga",
+                BackgroundColor = Color.LightSalmon,
+                TextColor = Color.Black
+            };
+            l_btn.Clicked += Start_Page;
+
+            b_btn = new Button
+            {
+                Text = "Uus mäng nuppuga",
+                BackgroundColor = Color.LightYellow,
+                TextColor = Color.Black
+            };
+            b_btn.Clicked += Start_Page;
 
             rules_btn = new Button
             {
@@ -32,7 +48,7 @@ namespace Trips_Traps_Trull
 
             StackLayout st = new StackLayout
             {
-                Children = { n_btn, rules_btn }
+                Children = { n_btn, l_btn, b_btn, rules_btn }
             };
             st.BackgroundColor = Color.LightYellow;
             Content = st;
@@ -43,7 +59,15 @@ namespace Trips_Traps_Trull
             Button btn = (Button)sender;
             if(sender == n_btn)
             {
+                await Navigation.PushAsync(new Game2_Page());
+            }
+            else if (sender == l_btn)
+            {
                 await Navigation.PushAsync(new Game_Page());
+            }
+            else if(sender== b_btn)
+            {
+                await Navigation.PushAsync(new Game3_Page());
             }
             else if(sender == rules_btn)
             {

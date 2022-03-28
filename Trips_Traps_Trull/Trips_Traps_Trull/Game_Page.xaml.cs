@@ -22,17 +22,6 @@ namespace Trips_Traps_Trull
             BackgroundColor = Color.LightYellow;
         }
 
-        private void Tap_Tapped(object sender, EventArgs e)
-        {
-            var box = (BoxView)sender;
-            var lbl = (Label)sender;
-            var r = Grid.GetRow(box); // koordinty klika po setke
-            var c = Grid.GetColumn(box);
-            box.Color = Color.Yellow;
-            lbl.Text = "X";
-        }
-
-
         private async void Button_Clicked(object sender, EventArgs e)
         {
             string action = await DisplayActionSheet("x või o?", "Tühistamine", null, "x", "y");
@@ -99,6 +88,18 @@ namespace Trips_Traps_Trull
                 Children = { frame }
             };
             Content = st;
+        }
+        private void Tap_Tapped(object sender, EventArgs e)
+        {
+            var box = (BoxView)sender;
+            lbl = new Label();
+            var r = Grid.GetRow(box); // koordinty klika po setke
+            var c = Grid.GetColumn(box);
+            box.Color = Color.Yellow;
+            lbl.Text = "X";
+            Grid.SetRow(lbl,r);
+            Grid.SetColumn(lbl, c);
+            
         }
     }
 }
