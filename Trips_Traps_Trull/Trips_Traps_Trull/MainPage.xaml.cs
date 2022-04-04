@@ -65,7 +65,7 @@ namespace Trips_Traps_Trull
             {
                 await Navigation.PushAsync(new Game_Page());
             }*/
-            else if(sender== b_btn)
+            if(sender== b_btn)
             {
                 await Navigation.PushAsync(new Game3_Page());
             }
