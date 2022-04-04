@@ -14,9 +14,8 @@ namespace Trips_Traps_Trull
     {
         Frame frame;
         Image img;
-        Grid grid;
         string fir;
-
+        int taps;
         public Game2_Page()
         {
             InitializeComponent();
@@ -58,6 +57,7 @@ namespace Trips_Traps_Trull
                     TapGestureRecognizer tap = new TapGestureRecognizer();
                     tap.Tapped += Tap_Tapped;
                     img.GestureRecognizers.Add(tap);
+                    
                 }
             }
 
@@ -75,7 +75,7 @@ namespace Trips_Traps_Trull
             };
             Content = st;
         }
-        int taps;
+        
         private void Tap_Tapped(object sender, EventArgs e)
         {
             taps++;
@@ -87,10 +87,14 @@ namespace Trips_Traps_Trull
                 if (fir == "x")
                 {
                     imgsender.Source = "O.png";
+                    imgsender.IsEnabled = false;
+                    Winner();
                 }
                 else if (fir == "o")
                 {
                     imgsender.Source = "x.png";
+                    imgsender.IsEnabled = false;
+                    Winner();
                 }
                 
             }
@@ -99,18 +103,37 @@ namespace Trips_Traps_Trull
                 if (fir == "o")
                 {
                     imgsender.Source = "O.png";
-
+                    imgsender.IsEnabled = false;
+                    Winner();
                 }
                 else if (fir == "x")
                 {
                     imgsender.Source ="x.png";
-
+                    imgsender.IsEnabled = false;
+                    Winner();
                 }
             }
             else
             {
                 taps--;
             }
+            Winner();
+        }
+
+        private async void Winner()
+        {
+            int c;
+            int r;
+            if (taps == 9)
+            {
+                await DisplayAlert("Mängu lõpp", "Mängus võitjat pole", "Avaleht", "Tühistamine");
+                if (true)
+                {
+                    await Navigation.PushAsync(new MainPage());
+                }
+                
+            }
+
         }
     }
 }

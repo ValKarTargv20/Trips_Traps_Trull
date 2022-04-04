@@ -13,11 +13,11 @@ namespace Trips_Traps_Trull
     public partial class Game3_Page : ContentPage
     {
         Frame frame;
-        Grid grid;
         Button btn;
         Label lbl;
         string fir;
         int taps;
+        string[,] myAr = new string[3, 3];
         public Game3_Page()
         {
             InitializeComponent();
@@ -55,7 +55,9 @@ namespace Trips_Traps_Trull
                     btn.Text = "";
                     btn.BackgroundColor = Color.Yellow;
                     grid.Children.Add(btn, c, r);
+                    
                     btn.Clicked += Tap_Tapped;
+                    
                 }
             }
 
@@ -86,6 +88,7 @@ namespace Trips_Traps_Trull
             var btnsender = (Button)sender;
             var r = Grid.GetRow(btnsender);
             var c = Grid.GetColumn(btnsender);
+
             if (taps % 2 ==0 && btnsender.BackgroundColor != Color.Lime)
             {
                 if (fir == "x")
@@ -93,12 +96,16 @@ namespace Trips_Traps_Trull
                     btnsender.Text = "o";
                     btnsender.TextColor = Color.Black;
                     btnsender.BackgroundColor = Color.Lime;
+                    myAr[r, c] = btnsender.Text;
+                    Winner();
                 }
                 else if (fir == "o")
                 {
                     btnsender.Text = "x";
                     btnsender.TextColor = Color.Black;
                     btnsender.BackgroundColor = Color.Lime;
+                    myAr[r, c] = btnsender.Text;
+                    Winner();
                 }
                     
             }
@@ -109,12 +116,16 @@ namespace Trips_Traps_Trull
                     btnsender.Text = "o";
                     btnsender.TextColor = Color.Black;
                     btnsender.BackgroundColor = Color.Lime;
+                    myAr[r, c] = btnsender.Text;
+                    Winner();
                 }
                 else if (fir == "x")
                 {
                     btnsender.Text = "x";
                     btnsender.TextColor = Color.Black;
                     btnsender.BackgroundColor = Color.Lime;
+                    myAr[r, c] = btnsender.Text;
+                    Winner();
                 }
                     
             }
@@ -122,7 +133,36 @@ namespace Trips_Traps_Trull
             {
                 taps--;
             }
-            
+        }
+
+        public async void Winner()
+        {
+            if(myAr[0, 0] == "x" && myAr[0, 1] == "x" && myAr[0, 2]== "x" || myAr[1, 0] == "x" && myAr[1, 1] == "x"&& myAr[1, 2]== "x" || myAr[2, 0] == "x"&& myAr[2, 1] == "x" && myAr[2, 2]== "x" || myAr[0, 0] == "x"&& myAr[1,0] == "x"&& myAr[2, 0] == "x"||myAr[0,1]== "x"&&myAr[1,1]== "x"||myAr[2,1]== "x"||myAr[0,2] =="x" && myAr[1,2]== "x"&&myAr[2,2]== "x"|| myAr[0, 0] == "x" && myAr[1, 1] == "x" && myAr[2, 2] == "x"|| myAr[0, 2] == "x" && myAr[1, 1] == "x" && myAr[2, 0] == "x")
+            {
+                await DisplayAlert("Mängu lõpp", "Mängus võitja - "+myAr[0,0], "Avaleht", "Tühistamine");
+                if (true)
+                {
+                    await Navigation.PushAsync(new MainPage());
+                }
+            }
+            else if(myAr[0, 0] == "o" && myAr[0, 1] == "o" && myAr[0, 2] == "o" || myAr[1, 0] == "o" && myAr[1, 1] == "o" && myAr[1, 2] == "o" || myAr[2, 0] == "o" && myAr[2, 1] == "o" && myAr[2, 2] == "o" || myAr[0, 0] == "o" && myAr[1, 0] == "o" && myAr[2, 0] == "o" || myAr[0, 1] == "o" && myAr[1, 1] == "o" || myAr[2, 1] == "o" || myAr[0, 2] == "o" && myAr[1, 2] == "o" && myAr[2, 2] == "o" || myAr[0, 0] == "o" && myAr[1, 1] == "o" && myAr[2, 2] == "o" || myAr[0, 2] == "o" && myAr[1, 1] == "o" && myAr[2, 0] == "o")
+            {
+                await DisplayAlert("Mängu lõpp", "Mängus võitja - 0", "Avaleht", "Tühistamine");
+                if (true)
+                {
+                    await Navigation.PushAsync(new MainPage());
+                }
+            }
+            else if (taps == 9)
+            {
+                await DisplayAlert("Mängu lõpp", "Mängus võitjat pole", "Avaleht", "Tühistamine");
+                if (true)
+                {
+                    await Navigation.PushAsync(new MainPage());
+                }
+
+            }
+
         }
     }
 }

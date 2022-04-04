@@ -14,7 +14,7 @@ namespace Trips_Traps_Trull
         public MainPage()
         {
             InitializeComponent();
-            n_btn = new Button
+            /*n_btn = new Button
             {
                 Text = "Uus mänd pildidega",
                 BackgroundColor = Color.Bisque,
@@ -28,7 +28,7 @@ namespace Trips_Traps_Trull
                 BackgroundColor = Color.LightSalmon,
                 TextColor = Color.Black
             };
-            l_btn.Clicked += Start_Page;
+            l_btn.Clicked += Start_Page;*/
 
             b_btn = new Button
             {
@@ -57,14 +57,14 @@ namespace Trips_Traps_Trull
         private async void Start_Page(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if(sender == n_btn)
+            /*if(sender == n_btn)
             {
                 await Navigation.PushAsync(new Game2_Page());
             }
             else if (sender == l_btn)
             {
                 await Navigation.PushAsync(new Game_Page());
-            }
+            }*/
             else if(sender== b_btn)
             {
                 await Navigation.PushAsync(new Game3_Page());
